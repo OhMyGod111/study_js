@@ -72,7 +72,7 @@
 				var cur = 0;
 
 				if (attr == 'opacity') {
-					cur = parseFloat(getStyle(obj,attr)) * 100;  //获取当前对象的 透明度
+					cur = Math.round(parseFloat(getStyle(obj,attr)) * 100);  //获取当前对象的 透明度 四舍五入取值；
 				}else{
 					cur = parseInt(getStyle(obj,attr));
 				}
@@ -100,9 +100,6 @@
    /*
     * 问题：
 	* 1.obj.offsetWidth (包含 ：border + width + padding) 而obj.style.width(只包含  width, 并且这个width只能在行内获取，所以使用以下方法)
-	*
-	*
-	*
 	*
 	*
 	*/
