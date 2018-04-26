@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>延迟</title>
+</head>
+<style type="text/css">
+#div1{
+	width: 50px; 
+	height: 50px;
+	background: gray;
+	float: left;
+
+}
+
+#div2{
+	width: 350px; 
+	height: 150px;
+	background: red;
+	float: left;
+	margin-left: 30px;
+	display: none;
+}
+</style>
+<script type="text/javascript">
+
+	var id 
+	window.onload = function(){
+		// alert('加载完成了！');
+
+		document.getElementById('div2').onmouseover = document.getElementById('div1').onmouseover = function() {
+			dropIn();
+		}
+
+
+		document.getElementById('div2').onmouseout = document.getElementById('div1').onmouseout = function() {
+		 id = setInterval('dropOut()', 500);
+		}
+	}
+
+	function dropIn() {
+		clearInterval(id);
+		document.getElementById('div2').style.display = 'block';
+	}
+
+	function dropOut() {
+		document.getElementById('div2').style.display = 'none';
+	}
+
+</script>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>事件-行为-结构相分离</title>
+</head>
+<style>
+/*  样式 */
+	div{
+		width:500px;
+		height: 100px;
+		border: 1px solid blue;
+	}
+</style>
+<body>
+	<div>
+		<p>
+			<ul>
+				<li></li>
+			</ul>
+		</p>
+	</div>
+</body>
+
+<script type="text/javascript">
+	// 事件
+	// function bian() {
+	// 	// body...
+	// 	document.getElementsByTagName('div')[0].style.border = '2px solid red';
+	// }
+
+	// 写法1
+	// document.getElementsByTagName('div')[0].onclick = bian;  
+
+	// 写法2  document.getElementsByTagName('div')[0].style.border = '2px solid red'; or  使用 this
+	document.getElementsByTagName('div')[0].onclick = function(){
+		this.style.border = '2px solid red';
+	};  
+</script>
+</html>

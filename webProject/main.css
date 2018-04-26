@@ -1,0 +1,66 @@
+#container{
+	width: 1300px;
+	/*height: 1500px;*/
+	margin: 0px auto;
+	background: blue;
+}
+
+#header{
+	height: 100px;
+	background: orange;
+	/*float:left;*/
+}
+
+#main{
+	height: 1000px;
+	background: red;
+	/*float:left;*/
+}
+
+#lsild{
+	width: 800px;
+	height: 800px;
+	background: pink;
+	float:left;
+	margin: 50px;
+}
+
+.four{
+	width: 330px;
+	height: 330px;
+	background: white;
+	margin: 20px;
+	float: left;
+	padding: 10px;
+
+	/*border: 10px solid black;  边框*/  
+}
+
+#rsild{
+	width: 300px;
+	height: 800px;
+	background: khaki;
+	float: right;  
+	margin: 50px;
+
+	/*clear: both;  清除 div 上面的浮层  防止被盖住  both 清除所有*/
+	
+}
+
+#footer{
+	height: 100px;
+	background: yellow;
+}
+
+span{
+	background: black;
+	color: red;
+	width: 100px;
+	height: 100px;
+	/*display: block; inline */
+	display: block;
+}
+
+p{
+	text-indent: 8px;
+}

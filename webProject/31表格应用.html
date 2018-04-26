@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>表格应用</title>
+</head>
+<style type="text/css">
+
+table , tr,td{
+	width: 500px;
+	border-collapse:collapse;
+	border: 1px solid red;
+	text-align: center;
+}
+</style>
+
+<script type="text/javascript">
+	window.onload = function(){
+		var oTxt = document.getElementsByTagName('input')[0];
+		var oBtn = document.getElementsByTagName('input')[1];
+		var oTab = document.getElementsByTagName('table')[0]
+		
+		// alert(oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[0].getElementsByTagName('td')[1].innerHTML);
+		// alert(oTab.tBodies[0].rows[0].cells[1].innerHTML);   //cells  单元格
+		
+
+		// var sTable = oTab.tBodies[0].rows[0].cells[1].innerHTML.toLowerCase();	
+
+		/*
+		 * 1.模糊搜索 
+		 *
+		 * 2.
+		 *
+		 * 3.
+		 *
+		 *
+		 *
+		 */
+		oBtn.onclick = function(){
+			var sName = oTxt.value.toLowerCase();
+
+			for (var i = 0; i < oTab.tBodies[0].rows.length; i++) {
+				var sTable = oTab.tBodies[0].rows[i].cells[1].innerHTML.toLowerCase();
+
+				var aNames = sName.split(' ');
+
+				oTab.tBodies[0].rows[i].style.background = '';
+
+				for (var j = 0; j < aNames.length; j++) {
+					var an = aNames[j]
+
+					if (an.length == 0) {
+						continue;
+					}
+
+					if (sTable.search(an) != -1) {
+						oTab.tBodies[0].rows[i].style.background = 'yellow';
+					}
+				}
+			}
+		}
+	}
+</script>
+<body>
+	请输入姓名：<input type="text" name="name">
+	<input type="button" value="搜索">
+	<table>
+		<thead>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Blue</td>
+				<td>18</td>
+			</tr>
+
+			<tr>
+				<td>2</td>
+				<td>Jack Ma</td>
+				<td>55</td>
+			</tr>
+
+			<tr>
+				<td>3</td>
+				<td>Pony</td>
+				<td>50</td>
+			</tr>
+
+			<tr>
+				<td>4</td>
+				<td>Stephen zhou</td>
+				<td>55</td>
+			</tr>
+
+			<tr>
+				<td>5</td>
+				<td>Jay Chou</td>
+				<td>39</td>
+			</tr>
+
+			<tr>
+				<td>6</td>
+				<td>Jackie Chan</td>
+				<td>60</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

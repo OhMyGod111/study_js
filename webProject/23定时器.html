@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>定时器</title>
+</head>
+
+<script type="text/javascript">
+
+	var intervalID = window.setInterval('doBomb()', 1000);
+
+	function doBomb() {
+		var btn = document.getElementsByName('time')[0];
+		btn.value = parseInt(btn.value )-1;
+		if (btn.value == 0) {
+			var img = document.getElementById('picture')
+			img.src = "./imgs/blast.jpg"
+			window.clearInterval(intervalID);
+		}
+	}
+
+	// window.setTimeout('doBomb()', 3000);
+	
+	
+</script>
+
+<body>
+
+	<h1>定时器</h1>
+	<input type="button" name="time" value="5"> <br/>
+	<img src="./imgs/bomb.jpg" alt="" id="picture">
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>正则验证</title>
+</head>
+<body>
+	<!-- form>p*3>input:text -->
+	<form action="">
+		<p>用户名：<input type="text" name="username" id=""></p>
+		<p>Email:<input type="text" name="email" id=""></p>
+		<p><input type="submit" value="提交" id=""></p>
+	</form>
+</body>
+
+<script type="text/javascript">
+	document.getElementsByTagName('form')[0].onsubmit = function(){
+		var patt = /^[a-zA-Z0-9]{6,11}$/
+		var username = document.getElementsByName('username')[0].value;
+		if (!patt.test(username)) {
+			alert('用户名由6-11 字母数字组成！');
+			return false;
+		}
+		var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+	
+		if (!reg.test(document.getElementsByName('email')[0].value)) {
+			alert('请输入正确的邮箱!')
+			return false;
+		}
+	}
+</script>
+</html>

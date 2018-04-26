@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>增加节点</title>
+</head>
+<script type="text/javascript">
+	function add() {
+		// var li = document.createElement('li');
+		// var txt = document.createTextNode('冬');
+		// li.appendChild(txt);
+		// document.getElementsByTagName('ul')[0].appendChild(li);
+
+		var ul = document.getElementsByTagName('ul')[0];
+		ul.innerHTML = '<li>hehe</li> <li>hehe</li> <li>hehe</li> <li>hehe</li>'
+		// alert(ul.innerHTML);
+	}
+</script>
+<body>
+	<input type="button" name="" value="增加节点" onclick="add();">
+	<ul>
+		<!-- <li>春</li>
+		<li>夏</li>
+		<li>秋</li> -->
+	</ul>
+</body>
+</html>

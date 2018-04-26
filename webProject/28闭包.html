@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>js 闭包</title>
+</head>
+
+<script type="text/javascript">
+	function foo(x) {
+    var tmp = 3;
+    return function (y) {
+        alert(x + y + (++tmp));
+    }
+   
+}
+var bar = foo(2);  // bar 现在是一个闭包
+bar(10);
+</script>
+<body>
+
+</body>
+</html>

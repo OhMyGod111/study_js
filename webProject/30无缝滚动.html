@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>无缝滚动</title>
+</head>
+<style type="text/css">
+*{
+	margin: 0;
+	padding: 0;
+}
+div{
+	width: 1130px;
+	height: 210px;
+	position: relative;
+	background: red;
+	margin: 100px auto;
+	overflow: hidden; /*文本溢出*/
+}
+
+div ul{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+div ul li{
+	float: left;
+	list-style: none;
+}
+
+input{
+	width: 50px;
+	height: 30px;
+}
+</style>
+
+<script type="text/javascript">
+	
+	window.onload = function(){
+
+		var oDiv = document.getElementsByTagName('div')[0];
+		var oUl = oDiv.getElementsByTagName('ul')[0]
+		var aLi = document.getElementsByTagName('li');
+		var aInput = document.getElementsByTagName('input');
+
+		var speed = -2;
+
+		// alert(aLi);
+		// return;
+		oUl.innerHTML += oUl.innerHTML;
+		// + 50 解决 图片宽度不一致的问题；
+		oUl.style.width = 15+aLi[0].offsetWidth*aLi.length+'px';
+
+		function move(){
+			if (Math.abs(oUl.offsetLeft) > oUl.offsetWidth/2) {  // 左移  列表扯到右边去到 left = 0   
+				oUl.style.left = '0';
+			}
+
+			if (oUl.offsetLeft > 0) {  //右移 列表扯到左边去  left 为负数  
+				oUl.style.left = -oUl.offsetWidth/2+'px';
+			}
+
+			oUl.style.left = oUl.offsetLeft + speed +'px';
+		}
+
+		var timer = window.setInterval(move,30);
+
+		oDiv.onmouseover = function(){
+			clearInterval(timer);
+		}
+
+		oDiv.onmouseout = function(){
+			timer = setInterval(move,30);
+		};
+
+		aInput[0].onclick = function(){
+			speed = -2;
+		}
+
+		aInput[1].onclick = function(){
+			speed = 2;
+		}
+
+
+	}
+</script>
+<body>
+	<input type="button" value="向左走">
+	<input type="button" value="向右走">
+	<div>
+		<ul>
+			<li><img src="./imgs/1.png" alt=""></li>
+			<li><img src="./imgs/2.png" alt=""></li>
+			<li><img src="./imgs/3.png" alt=""></li>
+			<li><img src="./imgs/4.png" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>

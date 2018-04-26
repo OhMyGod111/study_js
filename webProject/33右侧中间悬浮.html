@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>右侧悬浮框 </title>
+	</head>
+	<style type="text/css">
+		#div1{
+			width:200px;
+			height: 300px;
+			background: yellow;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		window.onscroll = function(){
+			var oDiv = document.getElementById('div1');
+			var oSpain = document.getElementById('span1');
+			
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop; //滚动条的高度
+//			var scrollTop = document.body.scrollTop; 测试可以不使用这个做兼容 Chrome ff IE
+//			alert(scrollTop);
+
+//			oDiv.style.top = document.documentElement.clientHeight - oDiv.offsetHeight + scrollTop +'px';
+//			可视区域的高度 - 可视区域高度 + 滚动条的高度
+			/*
+			 * 1.(右侧居中 可见区域高度 - 可视区域高度)/2  居中
+			 * 2.parseInt()取整 防止悬浮上下抖动。
+			 * 
+			 */
+			startMove(parseInt((document.documentElement.clientHeight - oDiv.offsetHeight)/2) + scrollTop);
+//			alert(oDiv.offsetHeight);
+
+			oSpain.innerHTML = 'clientHeight:'+document.documentElement.clientHeight+',offsetHeight:'+oDiv.offsetHeight+',scrollTop:'+scrollTop;
+			
+		}
+		var timer = null;
+		function startMove(iTarget){
+			var oDiv = document.getElementById('div1');
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var speed = (iTarget - oDiv.offsetTop)/6;
+				speed = speed > 0? Math.ceil(speed) : Math.floor(speed); // 向上滚动 speed为正 Math 向上取整 反之 Math 向下取整 ；
+				
+				if(iTarget == oDiv.offsetTop){
+					clearInterval(timer);
+				}else{
+					oDiv.style.top = oDiv.offsetTop + speed +'px'; 
+				}
+			},30);
+		}
+	</script>
+	<body style="height: 2000px;">
+		<span id="span1" style="position: fixed;left: 0;top: 0;">
+			
+		</span>
+		<div id="div1">
+			
+		</div>
+	</body>
+</html>

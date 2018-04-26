@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+</head>
+
+<script type="text/javascript">
+	function del() {
+		var lis = document.getElementsByTagName('li');
+
+		if (lis.length>0) {
+			var lastli = lis[lis.length - 1];
+		// alert(lastli.parentNode);
+		lastli.parentNode.removeChild(lastli);
+
+		// lis[lis.length - 1].parentNode.removeChild(lis[lis.length - 1]);
+
+		// parentNode.appendChild(sChild); 1. 先把元素从原有的父级上删除； 2.添加到新的父级上； 
+
+		// appendChild 排序 -->  将元素集合排序（注：直接排序元素集合会报错，需将元素集合放入新建的数组中sort()） 首先删除 其次追加 
+	}
+}
+</script>
+
+<body>
+
+	<input type="button" name="" value="删除最后一个元素" onclick="del();">
+	
+	<ul>		
+		<li>春</li>
+		<li>夏</li>
+		<li>秋</li>
+		<li>冬</li>
+	</ul>
+</body>
+</html>

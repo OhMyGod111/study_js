@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Js菜单联动</title>
+</head>
+<script type="text/javascript">
+	
+	var arr = [
+	['朝阳','海淀','门头沟'],
+	['黄埔','宝山','杨浦']
+	];
+
+	function fn() {
+		var menu = document.getElementById('menu');
+		var opt = '';
+		if (menu.value == '-1') {
+			document.getElementById('subMenu').innerHTML = opt;
+			return;
+		}
+
+		for (var i = 0, len = arr[menu.value].length; i< len; i++) {
+			opt = opt + '<option value ="'+i+'">'+ arr[menu.value][i] +'</option>'	
+		}
+		document.getElementById('subMenu').innerHTML = opt;
+			// alert(menu.value);
+		}	
+
+	</script>
+
+	<body>
+		<select id="menu" onchange="fn()">
+			<option value="-1">请选择</option>
+			<option value="0">北京</option>
+			<option value="1">上海</option>
+		</select>
+
+		<select id="subMenu"></select>
+	</body>
+	</html>

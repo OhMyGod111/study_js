@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>父子 "div" 也存在Marging 重叠现象</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+</head>
+
+<style type="text/css">
+
+div{
+	text-align: center;
+}
+
+#parent{
+	height: 200px;
+	background: red;
+	/*padding-top: 100px;*/
+	/*margin: 100px;*/
+	padding: 100px;
+}
+
+#child{
+	height: 100px;
+	width: 100px;
+	background: blue;
+	/*margin-top: 50px;*/
+	/*margin: 100px;*/
+	/*margin: 100px;*/
+	z-index: 10;
+}
+
+#child2{
+	height: 100px;
+	width: 100px;
+	background: yellow;
+	position: relative;
+	top: 80px;
+	left: 50px;
+	z-index: 1004;
+
+}
+
+#child3{
+	height: 100px;
+	width: 100px;
+	background: orange;
+	position: absolute;
+	left: 50px; top: 90px;
+	z-index: 0;
+}
+</style>
+<body>
+
+	<div id="parent">
+		
+		<div id="child">  child</div>
+
+		<div id="child2"> child2</div>
+
+		<div id="child3"> child3</div>
+	</div>
+
+</body>
+</html>
