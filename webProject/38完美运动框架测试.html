@@ -3,19 +3,50 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>完美运动框架测试</title>
+	<link rel="stylesheet" type="text/css" href="reset.css">
 </head>
+<style type="text/css">
+#div2{
+	background: yellow; width: 300px;height: 300px; margin-top: 100px;
+}
+
+#div3{
+	background: blue;width: 300px;height: 30px; overflow: hidden; position: absolute;
+}
+
+#div3 ul{
+	background: blue;width: 300px;height: 500px;list-style: none; position: absolute;
+}
+
+#div3 ul li{list-style: none; height: 25px;}
+
+#btn1{
+
+}
+</style>
 <script src="./js/move.js"></script>
 <script type="text/javascript">
 	window.onload = function(){
 		var oInput = document.getElementsByTagName('input')[0];
 		var oDiv = document.getElementsByTagName('div')[0];
+		var oBtn1 = document.getElementById('btn1');
+		var oDiv3 = document.getElementById('div3');
+		var oUl = oDiv3.getElementsByTagName('ul')[0];
+
+
 		oInput.onclick = function(){
 			startMove(oDiv,{width:101,height:500,opacity:100},function(){
 				// alert('运动完成了！');
 				startMove(oDiv,{width:200,height:200,opacity:30},function(){
 				// alert('运动完成了！');  链式调用动画；
-				})
 			})
+			})
+		}
+
+		var cur = 0;
+		oBtn1.onclick = function(){
+			cur -=25; 
+			startMove(oUl,{top:cur},false);
 		}
 	}
 </script>
@@ -23,6 +54,20 @@
 	<input type="button" value="运动">
 
 	<div style="width: 200px; height: 200px; background: red; filter: alpha(opacity:30); opacity:0.3"></div>
+
+<!-- 方淘宝幻灯片 或者文字上下滑动布局原理  布局见：div3 -->
+	<input id="btn1" type="button" value="文字滚动">
+	<div id="div2" >
+		<div id="div3">
+			<ul>
+				<li>我是谁1</li>
+				<li>我是谁2</li>
+				<li>我是谁3</li>
+				<li>我是谁4</li>
+				<li>我是谁5</li>
+			</ul>
+		</div>
+	</div>
 
 </body>
 </html>
