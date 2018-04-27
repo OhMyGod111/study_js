@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>完美运动框架测试</title>
+</head>
+<script src="./js/move.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		var oInput = document.getElementsByTagName('input')[0];
+		var oDiv = document.getElementsByTagName('div')[0];
+		oInput.onclick = function(){
+			startMove(oDiv,{width:101,height:500,opacity:100},function(){
+				// alert('运动完成了！');
+				startMove(oDiv,{width:200,height:200,opacity:30},function(){
+				// alert('运动完成了！');  链式调用动画；
+				})
+			})
+		}
+	}
+</script>
+<body>
+	<input type="button" value="运动">
+
+	<div style="width: 200px; height: 200px; background: red; filter: alpha(opacity:30); opacity:0.3"></div>
+
+</body>
+</html>
