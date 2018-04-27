@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>form 表单</title>
+</head>
+<style type="text/css">
+.pad{
+	margin-left: 20px;
+}
+</style>
+<body>
+	<div>
+		<form action="./table_demo.html" >
+			<p>用户名： <input type="text" name="username"></p>
+			<p class="pad">  密码：<input type="password" name="password"></p>
+			<p class="pad">性别：男 <input type="radio" name="sex" value="男">
+				女 <input type="radio" name="sex" value="女"></p>
+				<p>学历：
+					<select name="education">
+						<option value="大学" selected="selected">大学</option>
+						<option value="高中">高中</option>
+						<option value="初中">初中</option>
+					</select> 
+				</p>
+				<p>
+					爱好：<input type="checkbox" name="hobby"> 篮球 <input type="checkbox" name="hobby"> 足球
+					<input type="checkbox" name="hobby"> 乒乓球 <input type="checkbox" name="hobby"> 羽毛球
+					<input type="checkbox" name="hobby"> 棒球 <input type="checkbox" name="hobby"> 冰球
+				</p>
+				<p>
+					描述信息：
+					<textarea name="message" rows="10" cols="50"></textarea>
+				</p>
+				<p>
+					提交图片：
+					<input type="file" name="picture">
+				</p>
+				<p>
+					<input type="submit" name="submit" value="提交数据">
+				</p>
+
+			</form>
+
+		</div>
+	</body>
+	</html>

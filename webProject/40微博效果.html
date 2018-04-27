@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			margin: 0;
+			
+			padding: 0;
+		}
+		#ul1{
+			width: 400px;height: 500px;border: 2px solid blueviolet;margin-left: 100px;overflow: hidden;
+		}
+		
+		#ul1 li{
+			border-bottom: 1px black dashed;padding: 5px; list-style: none; overflow: hidden;filter: alpha(opacity 30); opacity: 0.3;
+		}
+	</style>
+	
+	<script src="./js/move.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oTextarea = document.getElementById('txt1');
+			var oBtn = document.getElementsByTagName('input')[0];
+			var oUl = document.getElementById('ul1');
+			
+			oBtn.onclick = function(){
+				var txt = oTextarea.value;
+				var oLi = document.createElement('li');
+				oLi.innerHTML = txt;
+				oTextarea.value = '';
+				
+				if(oUl.children.length > 0){
+					oUl.insertBefore(oLi,oUl.children[0]);
+				}else{
+					oUl.appendChild(oLi);
+				}
+				var iHeight = oLi.offsetHeight;   //获取 li的高度
+				oLi.style.height = '0';  //  设置 当前 li的高度为0  不然运动没效果
+				startMove(oLi,{height:iHeight}, function(){
+					startMove(oLi,{opacity:100}, false);
+				})
+			}
+			
+		}
+	</script>
+	<body>
+		<textarea id="txt1" cols="40" rows="5"></textarea>
+		<input type="button" name="" id="btn1" value="发布" />
+		<ul id="ul1"></ul>
+	</body>
+</html>
