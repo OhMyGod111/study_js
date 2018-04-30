@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <title>防止鼠标拖拽出界面</title>
     <style>
+    	*{
+    		margin: 0;
+    		
+    		padding: 0;
+    		
+    		border:0;
+    	}
         #div1{
             width: 150px;
             height: 150px;
@@ -22,35 +29,41 @@
             var disY = 0;
             oDiv.onmousedown=function (ev) {
                 var oEvent = ev||event;
+                
+//              alert(document.documentElement.clientHeight);//  测试 FF使用这个0有问题；
+//              alert(document.body.clientHeight);  //  测试 FF使用这个没问题；
+//              return;
                 //求出disX的横向距离
                 disX = oEvent.clientX - oDiv.offsetLeft; // offsetLeft 当前元素距离左边可视区域的宽度
                 disY = oEvent.clientY - oDiv.offsetTop;
 
                 document.onmousemove = function (ev) {
                     var oEvent = ev||event;
-                    var oLeft=oEvent.clientX - disX;
-                    var oTop=oEvent.clientY - disY;
+                    var l=oEvent.clientX - disX;
+                    var t=oEvent.clientY - disY;
                     //求oDiv 的位置
-                    if(oLeft<0){
-                        oLeft=0;
-                    }else if(oLeft>document.documentElement.clientWidth - oDiv.offsetWidth){
-                        oLeft = document.documentElement.clientWidth - oDiv.offsetWidth;
+                    if(l<0){  // 事件吸附 l < 50 就可达到效果
+                        l=0;
+                    }else if(l>=document.documentElement.clientWidth - oDiv.offsetWidth){
+                        l = document.documentElement.clientWidth - oDiv.offsetWidth;
                     }
-                    if(oTop<0){
-                        oTop=0;
-                    }else if(oTop>document.documentElement.clientHeight - oDiv.offsetHeight){
-                        oTop = document.documentElement.clientHeight - oDiv.offsetHeight;
+                    
+                    if(t<0){
+                        t=0;
+                    }else if(t>=document.documentElement.clientHeight - oDiv.offsetHeight){
+                        t = document.documentElement.clientHeight - oDiv.offsetHeight;
                     }
-                    oDiv.style.left = oLeft + 'px';
-                    oDiv.style.top  = oTop + 'px';
+                    oDiv.style.left = l + 'px';
+                    oDiv.style.top  = t + 'px';
 
                 };
                 //document 解决在点击div上由于移动太快 脱离出div而失去move事件 所以讲点击div之后的move事件加到 document上
-                oDiv.onmouseup=function () {
+                document.onmouseup=function () {
                     document.onmousemove = null; 
                     document.onmouseup = null;
                 };
-                return false;// 阻止默认事件
+                return false;// 阻止默认事件 也可以解决FF浏览器 点击拖动出现重影的问题
+//              “事件捕获”(setCapture || 释放事件捕获：releaseCapture())只为解决ie下拖拽会选中其它内容文字的bug，其他浏览器可用return false；
             };
         };
     </script>
