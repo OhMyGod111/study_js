@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>带框的拖拽</title>
+	</head>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		#div1 {
+			height: 100px;
+			width: 100px;
+			position: absolute;
+			background: greenyellow;
+		}
+		
+		#Box {
+			border: 1px dashed black;
+			position: absolute;/*不加这个style.top、left 就会失效*/
+		}
+	</style>
+
+	<script>
+		window.onload = function() {
+			var oDisX = 0;/*这个值是恒定不变的值*/
+			var oDisY = 0;/*这个值是恒定不变的值*/
+			var oDiv = document.getElementById('div1');
+			oDiv.onmousedown = function(ev) {
+				var oEvent = ev || event;
+				oDisX = oEvent.clientX /*鼠标点击的位置*/- oDiv.offsetLeft/*div的左间距*/;
+				oDisY = oEvent.clientY - oDiv.offsetTop;
+				
+				var oDiv2 = document.createElement('div');
+				oDiv2.style.width = oDiv.offsetWidth - 2 + 'px';
+				oDiv2.style.height = oDiv.offsetHeight - 2 + 'px';
+				oDiv2.id = 'Box';
+				document.body.appendChild(oDiv2);
+				
+				oDiv2.style.left = oDiv.offsetLeft + 'px';
+				oDiv2.style.top = oDiv.offsetTop + 'px';
+				
+				document.onmousemove = function(ev) {
+					var oEvent = ev || event;   // 兼容 ie ff chrome浏览器
+					var l = oEvent.clientX - oDisX;
+					var t = oEvent.clientY - oDisY;
+					if(l < 0) {
+						l = 0;
+					}
+					if(l > document.documentElement.clientWidth - oDiv.offsetWidth) {
+						l = document.documentElement.clientWidth - oDiv.offsetWidth;
+					}
+					if(t < 0) {
+						t = 0;
+					}
+					if(t > document.documentElement.clientHeight - oDiv.offsetHeight) {
+						t = document.documentElement.clientHeight - oDiv.offsetHeight;
+					}
+					oDiv2.style.left = l + 'px';
+					oDiv2.style.top = t + 'px';
+				};
+				document.onmouseup = function(ev) {
+					document.onmousemove = '';
+					document.onmouseup = '';
+					oDiv.style.left = oDiv2.offsetLeft + 'px';
+					oDiv.style.top = oDiv2.offsetTop + 'px';
+					document.body.removeChild(oDiv2); // 移除框
+				};
+				return false;
+			};
+		}
+	</script>
+
+	<body>
+		<div id="div1"></div>
+	</body>
+	</body>
+
+</html>
