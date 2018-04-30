@@ -47,17 +47,22 @@
 
 	<script>
 		window.onload = function() {
-			var oDisx = 0;
-			var oDisy = 0;
+
 			var oDiv = document.getElementById('div1');
 			var oDiv2 = document.getElementById('div2');
 			var oDiv3 = document.getElementById('div3');
 			var oDiv4 = document.getElementById('div4');
 			var oDiv5 = document.getElementById('div5');
+
 			oDiv.onmousedown = function(ev) {
 				var oEvent = ev || event;
+
+				var oDisx = 0;
+				var oDisy = 0;
+				
 				oDisx = oEvent.clientX - oDiv.offsetLeft;
 				oDisy = oEvent.clientY - oDiv.offsetTop;
+				
 				document.onmousemove = function(ev) {
 					var oEvent = ev || event;
 					var l = oEvent.clientX - oDisx; //判断div框是否移出显示框
@@ -76,17 +81,16 @@
 					oDiv.style.left = l + 'px';
 					oDiv.style.top = r + 'px';
 					var scale = l / (oDiv2.offsetWidth - oDiv.offsetWidth);
-					
+
 					document.title = scale;
-					
+
 					oDiv3.style.width = scale * 200 + 'px';
 					oDiv3.style.height = scale * 200 + 'px';
 					oDiv3.style.filter = 'alpha(opacity:' + (scale * 100) + ')';
 					oDiv3.style.opacity = scale;
-					
-					oDiv5.style.top = -scale * (oDiv5.offsetHeight - oDiv4.offsetHeight)/*防止滚动到底部出现一个div高度的空白*/ + 'px';
+
+					oDiv5.style.top = -scale * (oDiv5.offsetHeight - oDiv4.offsetHeight) /*防止滚动到底部出现一个div高度的空白*/ + 'px';
 				};
-				
 				document.onmouseup = function() {
 					document.onmousemove = null;
 					document.onmouseup = null;
