@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>js 面向对象改造 --- 选项卡</title>
+</head>
+
+<style type="text/css">
+/* CSS样式制作 */ 
+nav ul{
+	margin-top:5px;
+	width:305px;
+	height:30px;
+	border-bottom:2px solid #8b4412;
+}
+ul{
+	margin:0px;
+	padding-left:0px;
+}
+li{
+	list-style:none;
+} 
+.button{
+	display:inline-block;
+	width:55px;
+	height:23px;
+	text-align:center;
+	padding-top:5px;
+	margin-left:3px;
+	border:1px solid #b2b5b5;
+	border-bottom:none;
+}
+.main{
+	width:300px;
+	height:120px;
+	padding-top:5px;
+	padding-left: 3px;
+	border:1px solid #4d79a5;
+	border-top:none;
+	line-height: 25px;
+	font-size: 14px;
+	display:none;
+}
+#btn1{
+	border-bottom: 2px solid #fff;
+	border-top: 2px solid #8b4412;
+}  
+</style>
+
+<script type="text/javascript">
+    // JS实现选项卡切换
+    window.onload=function()
+    {
+    	new fnBtns();
+    }
+    function fnBtns(){
+    	var _this=this;
+    	this.btn=document.getElementsByClassName("button");
+    	this.box=document.getElementsByTagName("div");
+    	for(i=0;i<this.btn.length;i++){
+    		this.btn[i].index=i;
+    		this.btn[i].onmouseover=function()
+    		{
+    			_this.fnMouseover(this);
+    		}
+    	}
+    }
+    fnBtns.prototype.fnMouseover=function(btn){
+    	for(i=0;i<this.btn.length;i++){
+			this.btn[i].style.borderBottom="none";	//取消所有按钮的下边框
+			this.btn[i].style.borderTop="1px solid #b2b5b5";//设置所有按钮边框
+			this.box[i].style.display="none";
+			btn.style.borderBottom="2px solid #fff";//本按钮下边框
+			btn.style.borderTop="2px solid #8b4412";//本按钮上边框
+			this.box[btn.index].style.display="block"
+		}
+	}
+</script>
+<body>
+	<!-- HTML5中的新元素标签<nav>用来将具有导航性质的链接划分在一起，使代码结构在语义化方面更加准确，同时对于屏幕阅读器等设备的支持也更好 -->
+	<nav>
+		<ul>
+			<li class="button" id="btn1">房产</li>
+			<li class="button" id="btn2">家居</li>
+			<li class="button" id="btn3">二手房</li>
+		</ul>
+	</nav>
+	<div class="main" style="display: block;">
+		<ul>
+			<li>275万购昌平邻铁三居 总价20万买一居</li>
+			<li>200万内购五环三居 140万安家东三环</li>
+			<li>北京首现零首付楼盘 53万购东5环50平</li>
+			<li>京楼盘直降5000 中信府 公园楼王现房</li>
+		</ul>
+	</div>
+	<div class="main">
+		<ul>
+			<li>40平出租屋大改造 美少女的混搭小窝</li>
+			<li>经典清新简欧爱家 90平老房焕发新生</li>
+			<li>新中式的酷色温情 66平撞色活泼家居</li>
+			<li>瓷砖就像选好老婆 卫生间烟道的设计</li>
+		</ul>
+	</div>
+	<div class="main">
+		<ul>
+			<li>通州豪华3居260万 二环稀缺2居250w甩</li>
+			<li>西3环通透2居290万 130万2居限量抢购</li>
+			<li>黄城根小学学区仅260万 121平70万抛!</li>
+			<li>独家别墅280万 苏州桥2居优惠价248万</li>
+		</ul>
+	</div>
+</body>
+</html>
