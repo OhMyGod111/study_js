@@ -27,7 +27,7 @@
 	// B.prototype = A.prototype; // js 引用会导致添加到B的方法也会添加到A上面； 解决此问题如下：
 
 	for(var i in A.prototype){
-		B.prototype[i] = A.prototype[i]; // 原型继承 B添加的方法不会影响到A
+		B.prototype[i] = A.prototype[i]; // 原型继承 B继承A的方法、且B添加的方法不会影响到A
 	}
 
 	B.prototype.fnB = function(){
