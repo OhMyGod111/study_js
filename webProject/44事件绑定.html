@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		#div1 {
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
+	</style>
+	<script type="text/javascript" src="./js/EventBinding.js"></script>
+	<script type="text/javascript">
+		
+		// 事件绑定 和移除
+		function AddEventListener(obg, ev, fn) {
+
+			if(obg.attachEvent) {
+				obg.attachEvent('on' + ev, fn); // ie onclick
+			} else {
+				obg.addEventListener(ev, fn, false); //ff chrome click
+			}
+		}
+		
+		function removeEventListener(obg, ev, fn) {
+
+			if(obg.dattachEvent) {
+				obg.attachEvent('on' + ev, fn); // ie onclick
+			} else {
+				obg.removeEventListener(ev, fn, false); //ff chrome click
+			}
+		}
+
+		window.onload = function() {
+			var oDiv1 = document.getElementById('div1');
+			var oBtn1 = document.getElementById('btn1');
+
+			//			oBtn1.attachEvent('onclick',function(){
+			//				alert('a');
+			//			})
+			//			
+			//			oBtn1.attachEvent('onclick',function(){
+			//				alert('b');
+			//			})
+
+			AddEventListener(oBtn1, 'click', function() {
+				alert('a');
+			})
+
+			AddEventListener(oBtn1, 'click', function() {
+				alert('b');
+			})
+		}
+	</script>
+
+	<body>
+		<input type="button" name="btn1" id="btn1" value="按钮" />
+		<div id="div1">
+
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>滚动条</title>
+	</head>
+	<style>
+		#div2 {
+			width: 1000px;
+			height: 20px;
+			background: #800080;
+			position: relative;
+			margin: 0 auto;
+		}
+		
+		#div1 {
+			width: 20px;
+			height: 20px;
+			background: #FF9900;
+			position: absolute;
+		}
+		
+		#div3 {
+			width: 0;
+			height: 0;
+			background: #cc0000;
+			filter: alpha(opacity:0);
+			opacity: 0;
+		}
+		
+		#div4 {
+			width: 400px;
+			height: 400px;
+			position: relative;
+			border: 1px solid black;
+			overflow: hidden;
+		}
+		
+		#div5 {
+			position: absolute;
+			top: 0;
+			left: 0;
+			padding: 5px;
+		}
+	</style>
+
+	<script>
+		window.onload = function() {
+
+			var oDiv = document.getElementById('div1');
+			var oDiv2 = document.getElementById('div2');
+			var oDiv3 = document.getElementById('div3');
+			var oDiv4 = document.getElementById('div4');
+			var oDiv5 = document.getElementById('div5');
+
+			oDiv.onmousedown = function(ev) {
+				var oEvent = ev || event;
+
+				var oDisx = 0;
+				var oDisy = 0;
+				
+				oDisx = oEvent.clientX - oDiv.offsetLeft;
+				oDisy = oEvent.clientY - oDiv.offsetTop;
+				
+				document.onmousemove = function(ev) {
+					var oEvent = ev || event;
+					var l = oEvent.clientX - oDisx; //判断div框是否移出显示框
+					var r = oEvent.clientY - oDisy; //为什么不直接用offsetLeft和offsetTop，貌似这样就与鼠标脱离关系了
+					if(l < 0) {
+						l = 0;
+					} else if(l > oDiv2.offsetWidth - oDiv.offsetWidth) {
+						l = oDiv2.offsetWidth - oDiv.offsetWidth; //可视区的宽度减去div的宽度，即odiv能在父级最右面的位置
+					}
+					if(r < 0) //磁性吸附
+					{
+						r = 0;
+					} else if(r > oDiv2.offsetHeight - oDiv.offsetHeight) {
+						r = oDiv2.offsetHeight - oDiv.offsetHeight; //可视区的高度减去div的高度，即odiv能在父级最顶部的位置
+					} //l和r的存在是为了防止选中的div移到父级的外面
+					oDiv.style.left = l + 'px';
+					oDiv.style.top = r + 'px';
+					var scale = l / (oDiv2.offsetWidth - oDiv.offsetWidth);
+
+					document.title = scale;
+
+					oDiv3.style.width = scale * 200 + 'px';
+					oDiv3.style.height = scale * 200 + 'px';
+					oDiv3.style.filter = 'alpha(opacity:' + (scale * 100) + ')';
+					oDiv3.style.opacity = scale;
+
+					oDiv5.style.top = -scale * (oDiv5.offsetHeight - oDiv4.offsetHeight) /*防止滚动到底部出现一个div高度的空白*/ + 'px';
+				};
+				document.onmouseup = function() {
+					document.onmousemove = null;
+					document.onmouseup = null;
+				};
+				return false; //阻止chrom，IE9，火狐的默认事件
+			};
+		}
+	</script>
+
+	<body>
+
+		<div id="div2">
+			<div id="div1"></div>
+		</div>
+		<div id="div3"></div>
+		<div id="div4">
+			<div id="div5">
+				超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。1960年美国人Ted Nelson构思了一种通过计算机处理文本信息的方法，并称之为超文本（hypertext）,这成为了HTTP超文本传输协议标准架构的发展根基。Ted Nelson组织协调万维网协会（World Wide Web Consortium）和互联网工程工作小组（Internet Engineering Task Force ）共同合作研究，最终发布了一系列的RFC，其中著名的RFC 2616定义了HTTP 1.1。<br/> HTTP是一个客户端和服务器端请求和应答的标准（TCP）。客户端是终端用户，服务器端是网站。通过使用Web浏览器、网络爬虫或者其它的工具，客户端发起一个到服务器上指定端口（默认端口为80）的HTTP请求。（我们称这个客户端）叫用户代理（user agent）。应答的服务器上存储着（一些）资源，比如HTML文件和图像。（我们称）这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在 http和其他几种网络协议 http和其他几种网络协议 [1] 多个中间层，比如代理，网关，或者隧道（tunnels）。尽管TCP/IP协议是互联网上最流行的应用，HTTP协议并没有规定必须使用它和（基于）它支持的层。 事实上，HTTP可以在任何其他互联网协议上，或者在其他网络上实现。HTTP只假定（其下层协议提供）可靠的传输，任何能够提供这种保证的协议都可以被其使用。 通常，由HTTP客户端发起一个请求，建立一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端发送过来的请求。一旦收到请求，服务器（向客户端）发回一个状态行，比如"HTTP/1.1 200 OK"，和（响应的）消息，消息的消息体可能是请求的文件、错误消息、或者其它一些信息。 HTTP协议的网页 HTTP协议的网页 HTTP使用TCP而不是UDP的原因在于（打开）一个网页必须传送很多数据，而TCP协议提供传输控制，按顺序组织数据，和错误纠正。 通过HTTP或者HTTPS协议请求的资源由统一资源标示符（Uniform Resource Identifiers）（或者，更准确一些，URLs）来标识。
+			</div>
+		</div>
+	</body>
+
+</html>
