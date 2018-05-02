@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>js 继承</title>
+</head>
+
+<script type="text/javascript">
+	function A(){
+		this.a = 'Method of A';
+
+		this.showA = function(){
+			alert(this.a);
+		}
+	}
+
+	function B(){
+		// this.b = 'Method of B';
+		// this.showB = function(){
+		// 	alert(this.a);
+		// }
+
+		// this ==> new B();
+		A.call(this);  // B继承A的属性
+	}
+
+	// B.prototype = A.prototype; // js 引用会导致添加到B的方法也会添加到A上面； 解决此问题如下：
+
+	for(var i in A.prototype){
+		B.prototype[i] = A.prototype[i]; // 原型继承 B添加的方法不会影响到A
+	}
+
+	B.prototype.fnB = function(){
+		alert('fnB ---> 属于B的方法');
+	}
+
+	var objA = new A();
+	var objB = new B();
+	objB.showA();
+	// objA.fnB(); //此处会报错
+	objB.fnB();
+
+
+	//js call 方法测试
+	function show(a,b){
+		alert('this是-->' + this + '\n a 是--->' + a + '\n b 是 --->' + b);
+	}
+	// show ==> show.call()  利用call 实现继承
+	// show.call('abc','hehe', 'haha');
+
+</script>
+<body>
+
+</body>
+</html>
