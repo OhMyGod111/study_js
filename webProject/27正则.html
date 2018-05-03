@@ -15,14 +15,49 @@
 </body>
 
 <script type="text/javascript">
+	
+	/* 
+	 * 正则转移符： 
+	 *  /d 数字;         i (ignore)忽略大小写;        g (global) 找到全部;  
+	 *  + 量词 若干(多少个都可以);       /w 英文、数字、下划线 [0-9a-z_]; 
+	 *  /s 空白字符 ; . 任意字符(不建议使用);
+	 * 
+     *  
+	 * 量词：个数
+       ｛n｝正好出现n次
+       ｛n,m｝最少n次，最多m次
+       ｛n,｝最少n 次，最少不限
+        +  一次或者任意次{1,}
+        ？零次或一次{0,1}
+        *  任意次｛0，｝
+	 * 
+	 *
+	 * 任意字符匹配
+	 *
+	 * 范围 [0-9] [a-z]
+	 *
+	 * 排除 [^a]  ^ 不再[]中  代表行首  $ 代表 行尾    ^---$  指定区域开始校验；
+	 *
+	 *
+	 *
+	 */
+
+	 var  str = 'zcd 12a d23 3232 fsadf';
+	 var  re = /\d/g;
+
+	 var reg = new RegExp('a');
+
+	 alert(str.match(re));
+
+
 	document.getElementsByTagName('form')[0].onsubmit = function(){
-		var patt = /^[a-zA-Z0-9]{6,11}$/
+		var patt = /^[a-zA-Z0-9]{6,11}$/  // per 写法
 		var username = document.getElementsByName('username')[0].value;
 		if (!patt.test(username)) {
 			alert('用户名由6-11 字母数字组成！');
 			return false;
 		}
-		var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //正则表达式
+		var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); //js 写法
 	
 		if (!reg.test(document.getElementsByName('email')[0].value)) {
 			alert('请输入正确的邮箱!')
