@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>封装cookie示例</title>
+</head>
+<script type="text/javascript" src="js/CookieUtils.js"></script>
+<script type="text/javascript">
+window.onload=function() {
+	var oForm = document.getElementById('form1');
+	var oUser = document.getElementsByName('UserName')[0];
+	var oPassWord=document.getElementsByName('PassWord')[0];
+	oForm.onsubmit = function () {
+		setCookie('UserName', oUser.value, 14);
+		setCookie('PassWord', oPassWord.value, 14);
+	};
+    oUser.value = getCookie('UserName');//拿出来存放到文本里
+    oPassWord.value = getCookie('PassWord');
+        }
+    </script>
+    <body>
+    	<form id="form1" action="https://www.baidu.com/" method="get">
+    		用户名：<input type="text" name="UserName"><br>
+    		密码：<input type="text" name="PassWord"><br>
+    		<input  type="submit" value="登录">
+    	</form>
+    </body>
+    </html>
