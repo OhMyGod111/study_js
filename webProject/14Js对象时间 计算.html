@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+</head>
+<script type="text/javascript">
+
+	// Math 随机数
+	console.log(Math.random());  //默认取值范围[0,1)  ---> [5,10) ===>  Math.random()*5 + 5
+	console.log(Math.random() *5 +5);
+
+	// Math 四舍五入
+	console.log(Math.round(3.4));
+	console.log(Math.round(-3.4));
+	console.log(Math.round(-3.6));
+	console.log(Math.round(3.6));
+
+	var date = new Date();
+	
+	console.log(date.getFullYear());
+	console.log(date.getMonth() + 1); // 从 Date 对象返回月份 (0 ~ 11)。
+	console.log(date.getDay() + 1); // 从 Date 对象返回一周中的某一天 (0 ~ 6)。
+	console.log(date.getHours());
+	console.log(date.getMinutes());
+	console.log(date.getMilliseconds());
+
+	// 字符串   
+	// alert(1 ? "True" : "False");  0 为假  -1 为真  1为真;
+	var str = 'helloworld';
+	console.log('---------------------------------------->')
+	console.log(str.indexOf('he')>=0);
+	console.log('---------------------------------------->')
+
+	//Window 对象
+
+	// window.alert("hehe");
+	// window.confirm("确认退出吗？");
+
+	console.log(window.navigator.cookieEnabled);
+	console.log(window.location);
+
+	// window.location.href = 'https://www.baidu.com/';
+
+	// document 找对象  通过id、标签、对于表单元素可以使用name查找元素、类名等；
+	// document.getElementById('');
+
+</script>	
+<body>
+
+</body>
+</html>
